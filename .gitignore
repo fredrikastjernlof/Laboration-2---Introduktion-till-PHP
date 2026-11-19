@@ -1,0 +1,8 @@
+# Databasuppgifter
+/includes/config.php
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/

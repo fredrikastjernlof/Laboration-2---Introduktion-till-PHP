@@ -1,0 +1,1 @@
+/* Reset script for the Bucket List database */
