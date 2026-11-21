@@ -115,6 +115,67 @@ header {
     line-height: 1.5;
 }
 
+.bucketlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+}
+
+.bucketlist-container details {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff0f1;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.bucketlist-container summary {
+    cursor: pointer;
+    text-align: center;
+}
+
+.bucketlist-container summary h2 {
+    display: inline;
+    padding-left: clamp(1rem, 5vw, 1rem);
+}
+
+.bucket-card {
+    position: relative;
+}
+
+.settings-button {
+    background: none;
+    border: none;
+    color: black;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.card-settings {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    background-color: #FFD1D2;
+    padding: 3rem 1rem 1rem;
+    border-radius: 12px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-settings {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.card-settings[hidden] {
+    display: none;
+}
+
 button,
 input,
 textarea,
