@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Afacad', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.bg-image {
+    max-width: 1200px;
+    min-height: 100vh;
+    margin-inline: auto;
+    padding-block: 2rem;
+    background-image: url('../images/bakgrund.JPG');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.page-wrapper {
+    width: 70%;
+    max-width: 1000px;
+    margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        width: calc(100% - 2rem);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page-brand {
+    font-family: 'Amatic SC';
+    font-weight: 700;
+}
+
+.page-brand {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+header {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav {
+    width: 100%;
+    background-color: #FFD1D2;
+    border-radius: 20px 20px 0 0;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 2rem;
+    list-style: none;
+}
+
+.main-nav a {
+    display: block;
+    text-decoration: none;
+    color: #222;
+    padding: 1.5rem 2rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.main-nav a.active {
+    background-color: rgba(255, 240, 241, 0.8);
+    color: black;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .main-nav ul {
+        gap: 1rem;
+    }
+
+    .main-nav a {
+        padding: 1rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+.main-content {
+    background-color: rgba(255, 240, 241, 0.8);
+    width: 100%;
+    padding: 0;
+    display: flow-root;
+}
+
+.main-content h1 {
+    text-align: center;
+    margin-top: 0;
+    padding-top: 2rem;
+}
+
+.main-content p {
+    text-align: center;
+    line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+.footer {
+    background-color: #FFD1D2;
+    text-align: center;
+    padding: 1.5rem 0;
+    border-radius: 0 0 20px 20px;
+}
