@@ -1,5 +1,5 @@
 <?php
-
+/* Reset script for the Bucket List database */
 require_once __DIR__ . '/../includes/config.php';
 
 mysqli_report(MYSQLI_REPORT_OFF); // Stänger av felrapportering för mysqli
@@ -18,7 +18,7 @@ $db->query("DROP TABLE IF EXISTS bucketlist");
 // Skapa tabellen
 $sql = "CREATE TABLE bucketlist (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(32) NOT NULL,
+    name VARCHAR(64) NOT NULL,
     description VARCHAR(255) NOT NULL,
     priority ENUM('low', 'medium', 'high') NOT NULL,
     completed BOOLEAN NOT NULL DEFAULT FALSE,

@@ -16,7 +16,7 @@ if ($db->connect_error) {
 // Skapa tabell 
 $sql = "CREATE TABLE IF NOT EXISTS bucketlist (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(32) NOT NULL,
+    name VARCHAR(64) NOT NULL,
     description VARCHAR(255) NOT NULL,
     priority ENUM('low', 'medium', 'high') NOT NULL,
     completed BOOLEAN NOT NULL DEFAULT FALSE,
