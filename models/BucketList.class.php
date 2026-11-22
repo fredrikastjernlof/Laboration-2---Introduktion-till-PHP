@@ -27,8 +27,12 @@ class BucketList
     // Metod för att lägga till ett nytt bucketlist-objekt
     public function addBucket(string $name, string $description, string $priority): bool
     {
-        if (!$this->setName($name) || !$this->setDescription($description) || !$this->setPriority($priority)) {
-            return false; // Returnerar false om någon av set-metoderna misslyckas
+        $validName = $this->setName($name);
+        $validDescription = $this->setDescription($description);
+        $validPriority = $this->setPriority($priority);
+
+        if (!$validName || !$validDescription || !$validPriority) {
+            return false;
         }
 
         $sql = "INSERT INTO bucketlist (name, description, priority) VALUES (?, ?, ?)"; // Använder prepared statements för att förhindra SQL-injektion
@@ -41,8 +45,12 @@ class BucketList
     // Metod för att uppdatera ett befintligt bucketlist-objekt
     public function updateBucket(int $id, string $name, string $description, string $priority): bool
     {
-        if (!$this->setName($name) || !$this->setDescription($description) || !$this->setPriority($priority)) {
-            return false; // Returnerar false om någon av set-metoderna misslyckas
+        $validName = $this->setName($name);
+        $validDescription = $this->setDescription($description);
+        $validPriority = $this->setPriority($priority);
+
+        if (!$validName || !$validDescription || !$validPriority) {
+            return false;
         }
         $sql = "UPDATE bucketlist SET name = ?, description = ?, priority = ? WHERE id = ?"; // Använder prepared statements för att förhindra SQL-injektion
         $stmt = $this->db->prepare($sql); // Förbereder SQL-frågan

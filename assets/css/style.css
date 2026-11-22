@@ -47,6 +47,13 @@ h6,
     text-align: center;
 }
 
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
 header {
     padding: 0;
     display: flex;
@@ -181,6 +188,40 @@ input,
 textarea,
 select {
     font: inherit;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#bucket-dialog {
+    width: calc(100% - 2rem);
+    max-width: 450px;
+    border-radius: 12px;
+    padding: 2rem;
+    background-color: #fff0f1;
+}
+
+#form-errors {
+    color: #b42318;
+    font-weight: 600;
+}
+
+#form-errors[hidden] {
+    display: none;
+}
+
+.is-invalid {
+    border: 2px solid #b42318;
 }
 
 .footer {

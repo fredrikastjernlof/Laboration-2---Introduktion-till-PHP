@@ -1,19 +1,39 @@
 "use strict"
 
+// Event-lyssnare för bucketlist-sidan
+
 const addBucketButton = document.getElementById('add-bucket-button');
 const bucketDialog = document.getElementById('bucket-dialog');
-addBucketButton.addEventListener('click', () => {
-    const bucketForm = document.getElementById('bucket-form');
-    bucketForm.reset();
-    document.getElementById('bucket-dialog-title').textContent = 'Lägg till ett nytt mål i din bucketlist';
-    document.getElementById('bucket-id').value = '';
+
+const formErrors = document.getElementById('form-errors');
+
+if (!formErrors.hidden) {
     bucketDialog.showModal();
-});
+}
 
 
 const cancelButton = document.getElementById('cancel-button');
+
 cancelButton.addEventListener('click', () => {
+    formErrors.hidden = true;
     bucketDialog.close();
+});
+
+addBucketButton.addEventListener('click', () => {
+    document.getElementById('name').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('priority').value = '';
+
+    formErrors.hidden = true;
+
+    document.querySelectorAll('.is-invalid').forEach(field => {
+        field.classList.remove('is-invalid');
+    });
+
+    document.getElementById('bucket-dialog-title').textContent = 'Lägg till ett nytt mål i din bucketlist';
+    document.getElementById('bucket-id').value = '';
+    document.getElementById('submit-button').textContent = 'Lägg till';
+    bucketDialog.showModal();
 });
 
 const settingsButtons = document.querySelectorAll('.settings-button');
@@ -56,3 +76,4 @@ editButtons.forEach(button => {
         bucketDialog.showModal();
     });
 });
+

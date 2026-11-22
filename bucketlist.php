@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/includes/config.php';
 
 $title = 'Bucketlist';
@@ -7,13 +8,61 @@ $currentPage = 'bucketlist';
 $database = new Database();
 $bucketList = new BucketList($database->getConnection());
 
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
+$formData = $_SESSION['formData'] ?? [];
+unset($_SESSION['formData']);
+$fieldErrors = $_SESSION['fieldErrors'] ?? [];
+unset($_SESSION['fieldErrors']);
+
+// Hanterar POST-förfrågningar för att lägga till ett nytt bucketlist-objekt
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? '';
+    $description = $_POST['description'] ?? '';
+    $priority = $_POST['priority'] ?? '';
+
+    if (!$bucketList->setName($name)) {
+        $errors[] = "Namnet måste innehålla mellan 1 och 64 tecken.";
+        $fieldErrors['name'] = true;
+    }
+
+    if (!$bucketList->setDescription($description)) {
+        $errors[] = "Beskrivningen måste innehålla mellan 1 och 255 tecken.";
+        $fieldErrors['description'] = true;
+    }
+
+    if (!$bucketList->setPriority($priority)) {
+        $errors[] = "Du måste välja en giltig prioritet.";
+        $fieldErrors['priority'] = true;
+    }
+
+    if (empty($errors)) {
+        if ($bucketList->addBucket($name, $description, $priority)) {
+            header("Location: bucketlist.php");
+            exit;
+        } else {
+            $errors[] = "Ett fel uppstod när målet skulle läggas till. Vänligen försök igen.";
+        }
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        $_SESSION['formData'] = $_POST;
+        $_SESSION['fieldErrors'] = $fieldErrors;
+        header("Location: bucketlist.php");
+        exit;
+    }
+}
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 <h1>Bucketlist</h1>
 <p>Intro-text till bucketlist-sidan skrivs här..</p>
 
 <section class="bucketlist-container">
+
     <button type="button" id="add-bucket-button">Lägg till nytt mål</button>
+
     <?php
     $buckets = $bucketList->getBucketList();
 
@@ -45,7 +94,7 @@ require_once __DIR__ . '/includes/header.php';
                 value='1'
                 " . ($completed ? 'checked' : '') . "
             >
-            Jag gjorde det!
+            Jag gjorde det! 🥳
         </label>
 
         <button type='button' class='settings-button'
@@ -66,35 +115,6 @@ require_once __DIR__ . '/includes/header.php';
 
 </section>
 
-<dialog id="bucket-dialog">
-    <form id="bucket-form" method="post">
-        <h2 id="bucket-dialog-title">Lägg till ett nytt mål i din bucketlist</h2>
-        <input type="hidden" id="bucket-id" name="id">
-        <div class="form-group">
-            <label for="name">Ange ditt mål:</label>
-            <input type="text" id="name" name="name" maxlength="64" required>
-        </div>
-        <div class="form-group">
-            <label for="description">Beskriv ditt mål:</label>
-            <textarea id="description" name="description" maxlength="255" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="priority">Välj prioritet:</label>
-            <select id="priority" name="priority" required>
-                <option value="low">Låg</option>
-                <option value="medium">Medium</option>
-                <option value="high">Hög</option>
-            </select>
-        </div>
-        <div id="form-errors" role="alert" hidden>
-            <ul></ul>
-        </div>
-        <div class="form-buttons">
-            <button type="submit" id="submit-button">Lägg till</button>
-            <button type="button" id="cancel-button">Avbryt</button>
-        </div>
-    </form>
-
-</dialog>
+<?php include __DIR__ . '/includes/bucket-form.php'; ?>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
