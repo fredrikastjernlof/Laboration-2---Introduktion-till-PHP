@@ -61,6 +61,7 @@ editButtons.forEach(button => {
         const card = button.closest('.bucket-card');
         const id = card.dataset.id;
         const hiddenIdInput = document.getElementById('bucket-id');
+
         hiddenIdInput.value = id;
 
         const name = card.querySelector('h2').textContent;
@@ -74,6 +75,20 @@ editButtons.forEach(button => {
         document.getElementById('bucket-dialog-title').textContent = 'Redigera mål i din bucketlist';
         document.getElementById('submit-button').textContent = 'Spara ändringar';
         bucketDialog.showModal();
+    });
+});
+
+const deleteButtons = document.querySelectorAll('.delete-button');
+
+deleteButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const card = button.closest('.bucket-card');
+        const id = card.dataset.id;
+        const hiddenIdInput = document.getElementById('delete-id');
+
+        hiddenIdInput.value = id;
+
+        document.getElementById('delete-dialog').showModal();
     });
 });
 

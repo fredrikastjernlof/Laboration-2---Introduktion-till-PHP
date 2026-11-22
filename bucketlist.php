@@ -15,11 +15,24 @@ unset($_SESSION['formData']);
 $fieldErrors = $_SESSION['fieldErrors'] ?? [];
 unset($_SESSION['fieldErrors']);
 
+// Hanterar POST-förfrågningar för att radera ett bucketlist-objekt
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $id = filter_var($_POST['delete_id'], FILTER_VALIDATE_INT);
+
+    if ($id !== false && $id > 0) {
+        $bucketList->deleteBucket($id);
+    }
+
+    header("Location: bucketlist.php");
+    exit;
+}
+
 // Hanterar POST-förfrågningar för att lägga till ett nytt bucketlist-objekt
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $description = $_POST['description'] ?? '';
     $priority = $_POST['priority'] ?? '';
+    $id = $_POST['id'] ?? '';
 
     if (!$bucketList->setName($name)) {
         $errors[] = "Namnet måste innehålla mellan 1 och 64 tecken.";
@@ -37,7 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        if ($bucketList->addBucket($name, $description, $priority)) {
+        if (!empty($id)) {
+            $success = $bucketList->updateBucket((int)$id, $name, $description, $priority);
+        } else {
+            $success = $bucketList->addBucket($name, $description, $priority);
+        }
+
+        if ($success) {
             header("Location: bucketlist.php");
             exit;
         } else {
@@ -114,7 +133,6 @@ require_once __DIR__ . '/includes/header.php';
     ?>
 
 </section>
-
+<?php include __DIR__ . '/includes/delet-dialog.php'; ?>
 <?php include __DIR__ . '/includes/bucket-form.php'; ?>
-
 <?php include __DIR__ . '/includes/footer.php'; ?>

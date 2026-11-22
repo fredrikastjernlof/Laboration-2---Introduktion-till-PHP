@@ -224,6 +224,11 @@ select {
     border: 2px solid #b42318;
 }
 
+.is-invalid:focus {
+    border: 2px solid #b42318;
+    outline-offset: 3px;
+}
+
 .footer {
     background-color: #FFD1D2;
     text-align: center;
