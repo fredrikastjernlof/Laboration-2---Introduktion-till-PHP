@@ -55,11 +55,10 @@ require_once __DIR__ . '/includes/header.php';
                 Min största utmaning med PHP är nog syntaxen. Jag förstår
                 oftast vad koden gör och har en tydlig bild av vad jag vill
                 åstadkomma, men att skriva den själv är en annan historia.
-                Ibland ska det vara dollartecken, ibland inte.
-                Citationstecken, parenteser och semikolon ska hamna på rätt
-                ställen, och till slut känns allt som en enda röra. Det är
-                frustrerande när själva förståelsen finns där, men det ändå
-                tar en evighet att få ner koden på pränt.
+                Att hålla reda på när variabler ska ha dollartecken och hur 
+                citationstecken och semikolon ska användas blir lite rörigt 
+                ibland. Det är frustrerande när själva förståelsen 
+                finns där, men det tar ändå en evighet att få ner koden på pränt.
             </p>
             <p>
                 Jag har också märkt att AI-stöd inte alltid gör inlärningen
@@ -71,8 +70,9 @@ require_once __DIR__ . '/includes/header.php';
             <p>
                 PHP har alltså både positiva och negativa sidor för mig. Jag
                 uppskattar möjligheterna att organisera och återanvända kod,
-                men själva programmerandet har varit mer frustrerande än jag
-                hade hoppats.
+                men själva programmerandet har varit lite mer frustrerande än 
+                jag hade trott. Får jag bara nöta på med syntaxen så kommer 
+                jag nog snart in i det och kan börja njuta av själva kodandet.
             </p>
         </details>
     </article>
