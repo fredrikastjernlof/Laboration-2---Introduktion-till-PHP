@@ -27,7 +27,7 @@ $sql = "CREATE TABLE bucketlist (
 
 // skicka SQL-frågan till servern
 if ($db->query($sql) === TRUE) {
-    echo "<p>Table 'bucketlist' created successfully";
+    echo "<p>Table 'bucketlist' created successfully</p>";
 } else {
     echo "<p>Error creating table: </p>" . $db->error;
 }

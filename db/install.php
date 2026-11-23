@@ -25,18 +25,7 @@ $sql = "CREATE TABLE IF NOT EXISTS bucketlist (
 
 // skicka SQL-frågan till servern
 if ($db->query($sql) === TRUE) {
-    echo "<p>Table 'bucketlist' created successfully";
+    echo "<p>Table 'bucketlist' created successfully</p>";
 } else {
     echo "<p>Error creating table: </p>" . $db->error;
-}
-
-// Lägger till två testobjekt i tabellen
-$sql = "INSERT INTO bucketlist (name, description, priority, completed) VALUES
-    ('Testobjekt 1', 'Detta är ett testobjekt', 'medium', FALSE),
-    ('Testobjekt 2', 'Detta är ett annat testobjekt', 'high', TRUE)";
-
-if ($db->query($sql) === TRUE) {
-    echo "<p>Testobjekt har lagts till i tabellen 'bucketlist'</p>";
-} else {
-    echo "<p>Error adding test objects: </p>" . $db->error;
 }

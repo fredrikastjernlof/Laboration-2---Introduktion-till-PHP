@@ -13,7 +13,7 @@ class Database {
     }
 
     // Metod för att hämta anslutningen
-    public function getConnection() {
+    public function getConnection() : mysqli {
         return $this->connection;
     }
 }
