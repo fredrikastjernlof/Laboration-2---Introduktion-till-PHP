@@ -9,8 +9,8 @@
         <input type="hidden" id="delete-id" name="delete_id">
 
         <div class="form-buttons">
-            <button type="submit" id="confirm-delete-button">Ja, radera</button>
-            <button type="button" id="cancel-delete-button">Avbryt</button>
+            <button type="submit" id="confirm-delete-button">🗑️ Ja, radera</button>
+            <button type="button" id="cancel-delete-button">↩️ Avbryt</button>
         </div>
 
     </form>
