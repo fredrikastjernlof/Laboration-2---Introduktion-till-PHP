@@ -27,6 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['completed_id'])) {
+    $id = filter_var($_POST['completed_id'], FILTER_VALIDATE_INT);
+    $completed = isset($_POST['completed']);
+
+    if ($id !== false && $id > 0) {
+        $bucketList->updateBucketCompleted($id, $completed);
+    }
+
+    header("Location: bucketlist.php");
+    exit;
+}
+
 // Hanterar POST-förfrågningar för att lägga till ett nytt bucketlist-objekt
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
@@ -57,10 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($success) {
-            header("Location: bucketlist.php");
+            $fromCompleted = ($_POST['from_completed'] ?? '0') === '1';
+
+            header("Location: bucketlist.php" . ($fromCompleted ? "?completed=1" : ""));
             exit;
         } else {
-            $errors[] = "Ett fel uppstod när målet skulle läggas till. Vänligen försök igen.";
+            $errors[] = "Ett fel uppstod när målet skulle sparas. Vänligen försök igen.";
         }
     }
 
@@ -75,12 +89,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once __DIR__ . '/includes/header.php';
 ?>
-<h1>Bucketlist</h1>
-<p>Intro-text till bucketlist-sidan skrivs här..</p>
+
 
 <section class="bucketlist-container">
-
-    <button type="button" id="add-bucket-button">Lägg till nytt mål</button>
+    <h1>Bucketlist</h1>
+    <p>Här kan du lägga till, redigera och radera mål i din bucketlist. Du kan också markera mål som genomförda.</p>
+    <div class="bucket-actions">
+        <button type="button" id="add-bucket-button">Lägg till nytt mål 🎯</button>
+        <button type="button" id="show-completed-button">Visa färdiga mål 🥳</button>
+    </div>
 
     <?php
     $buckets = $bucketList->getBucketList();
@@ -106,15 +123,20 @@ require_once __DIR__ . '/includes/header.php';
         <p>{$description}</p>
         <p><strong>Prioritet:</strong> <span class='priority'>{$priority}</span></p>
 
-        <label>
-            <input
-                type='checkbox'
-                name='completed'
-                value='1'
-                " . ($completed ? 'checked' : '') . "
-            >
-            Jag gjorde det! 🥳
-        </label>
+        <form method='post' action='bucketlist.php'>
+        <input type='hidden' name='completed_id' value='{$id}'>
+            <fieldset>
+                <legend>Markera målet som genomfört</legend>
+                <label>
+                    <input type='checkbox' name='completed' value='1'
+                        onchange='this.form.submit()'>
+                    Jag gjorde det! 🥳
+                </label>
+            </fieldset>
+            <button type='submit' class='visually-hidden-submit'>
+                Spara status
+            </button>
+        </form>
 
         <button type='button' class='settings-button'
                 aria-label='Inställningar för {$name}'>
@@ -123,8 +145,8 @@ require_once __DIR__ . '/includes/header.php';
 
         <div class='card-settings' hidden>
             <button type='button' class='close-settings'>×</button>
-            <button type='button' class='edit-button'>Redigera</button>
-            <button type='button' class='delete-button'>Radera</button>
+            <button type='button' class='edit-button'>✏️ Redigera</button>
+            <button type='button' class='delete-button'>🗑️ Radera</button>
         </div>
         <p class='created-at'>Skapad: {$createdAt}</p>
     </details>";
@@ -133,6 +155,7 @@ require_once __DIR__ . '/includes/header.php';
     ?>
 
 </section>
+<?php include __DIR__ . '/includes/completed-dialog.php'; ?>
 <?php include __DIR__ . '/includes/delet-dialog.php'; ?>
 <?php include __DIR__ . '/includes/bucket-form.php'; ?>
 <?php include __DIR__ . '/includes/footer.php'; ?>

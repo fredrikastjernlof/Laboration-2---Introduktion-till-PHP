@@ -19,7 +19,9 @@ class BucketList
     // Metod för att hämta bucketlistan från databasen
     public function getBucketList(): array
     {
-        $sql = "SELECT * FROM bucketlist;";
+        $sql = "SELECT * FROM bucketlist 
+        WHERE completed = 0 
+        ORDER BY FIELD(priority, 'high', 'medium', 'low');";
         $result = mysqli_query($this->db, $sql);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
@@ -81,7 +83,6 @@ class BucketList
     // Metod för att markera ett bucketlist-objekt som genomfört
     public function updateBucketCompleted(int $id, bool $completed): bool
     {
-        $this->setCompleted($completed); // Sätter completed-egenskapen
         $sql = "UPDATE bucketlist SET completed = ? WHERE id = ?"; // Använder prepared statements för att förhindra SQL-injektion
         $stmt = $this->db->prepare($sql); // Förbereder SQL-frågan
         $stmt->bind_param("ii", $completed, $id); // "ii" betyder att båda parametrarna är heltal

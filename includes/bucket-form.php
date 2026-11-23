@@ -5,6 +5,7 @@
         <h2 id="bucket-dialog-title">Lägg till ett nytt mål i din bucketlist</h2>
 
         <input type="hidden" id="bucket-id" name="id">
+        <input type="hidden" name="from_completed" id="from-completed" value="0">
 
         <div class="form-group">
             <label for="name">Ange ditt mål:</label>
@@ -21,7 +22,7 @@
 
         <div class="form-group">
             <label for="priority">Välj prioritet:</label>
-            <select id="priority" name="priority" required 
+            <select id="priority" name="priority" required
                 class="<?= isset($fieldErrors['priority']) ? 'is-invalid' : '' ?>">
                 <option value="">Välj prioritet</option>
                 <option value="low" <?= ($formData['priority'] ?? '') === 'low' ? 'selected' : '' ?>>Låg</option>
@@ -41,8 +42,10 @@
         </div>
 
         <div class="form-buttons">
-            <button type="submit" id="submit-button">Lägg till</button>
-            <button type="button" id="cancel-button">Avbryt</button>
+            <button type="submit" id="submit-button">
+                <?= !empty($formData['id']) ? '💾 Spara ändringar' : '➕ Lägg till' ?>
+            </button>
+            <button type="button" id="cancel-button">↩️ Avbryt</button>
         </div>
 
     </form>
