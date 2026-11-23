@@ -1,5 +1,5 @@
 <header>
-    <div class="page-brand">Innan jag dör..</div>
+    <div class="page-brand">☠️ Innan jag dör... ☠️</div>
     <nav class="main-nav">
         <ul>
             <li>
