@@ -100,7 +100,7 @@ Projektet är byggt med:
 
 ## Publicerad webbplats 🌐
 
-Läggs till efter publicering.
+[☠️ Innan jag dör...☠️](https://innanjagdor.stjernlofstudio.se/)
 
 ---
 
