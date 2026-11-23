@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="6IUA9wE4BYhmBxyBNt37" name="Page-1">
-        <mxGraphModel dx="685" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#121212)" math="0" shadow="0">
+        <mxGraphModel dx="630" dy="298" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#121212)" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -23,9 +23,6 @@
                 </mxCell>
                 <mxCell id="5oIS5YW3Y8q47KHga6uU-85" parent="5oIS5YW3Y8q47KHga6uU-77" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getConnection( ): mysqli" vertex="1">
                     <mxGeometry height="26" width="260" y="86" as="geometry"/>
-                </mxCell>
-                <mxCell id="y_6lPyx6yAfcwEWQtO2c-20" edge="1" parent="1" source="5oIS5YW3Y8q47KHga6uU-81" style="edgeStyle=none;html=1;flowAnimation=1;" target="5oIS5YW3Y8q47KHga6uU-85" value="">
-                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5oIS5YW3Y8q47KHga6uU-81" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="BucketList&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
                     <mxGeometry height="704" width="350" x="280" y="290" as="geometry"/>
@@ -66,7 +63,7 @@
                 <mxCell id="5oIS5YW3Y8q47KHga6uU-87" parent="5oIS5YW3Y8q47KHga6uU-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getCompletedBuckets( ): array" vertex="1">
                     <mxGeometry height="26" width="350" y="294" as="geometry"/>
                 </mxCell>
-                <mxCell id="5oIS5YW3Y8q47KHga6uU-88" parent="5oIS5YW3Y8q47KHga6uU-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getBucketById( id: int ): array" vertex="1">
+                <mxCell id="5oIS5YW3Y8q47KHga6uU-88" parent="5oIS5YW3Y8q47KHga6uU-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getBucketById( id: int ): ?array" vertex="1">
                     <mxGeometry height="26" width="350" y="320" as="geometry"/>
                 </mxCell>
                 <mxCell id="5oIS5YW3Y8q47KHga6uU-89" parent="5oIS5YW3Y8q47KHga6uU-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ addBucket( name: string, description: string, priority: string ): bool" vertex="1">
