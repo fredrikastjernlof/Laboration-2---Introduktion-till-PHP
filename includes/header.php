@@ -18,7 +18,8 @@ require_once __DIR__ . '/config.php';
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Hoppa till huvudinnehållet</a>
     <div class="bg-image">
     <div class="page-wrapper">
     <?php include __DIR__ . '/main-menu.php'; ?>
-    <main class="main-content">
+    <main class="main-content" id="main-content" tabindex="-1">

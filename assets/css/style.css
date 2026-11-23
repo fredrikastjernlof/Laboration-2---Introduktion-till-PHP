@@ -8,6 +8,20 @@ body {
     min-height: 100vh;
 }
 
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 1000;
+    padding: 0.75rem 1rem;
+    background-color: #fff0f1;
+    color: #222;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
 .bg-image {
     max-width: 1200px;
     min-height: 100vh;
