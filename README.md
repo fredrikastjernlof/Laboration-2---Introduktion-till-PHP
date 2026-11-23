@@ -61,7 +61,7 @@ Projektet är byggt med:
 │   │   └── bakgrund.JPG
 │   └── js
 │       └── main.js
-├── db
+├── db  * Endast i repot, ej på webbhotellet
 │   ├── install.php
 │   └── reset.php
 ├── docs
